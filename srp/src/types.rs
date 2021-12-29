@@ -1,7 +1,11 @@
 //! Additional SRP types.
 use digest::Digest;
 use num_bigint::BigUint;
+
+#[cfg(feature = "std")]
 use std::{error, fmt};
+
+use crate::std_alloc::Vec;
 
 /// SRP authentication error.
 #[derive(Debug, Copy, Clone, Eq, PartialEq)]
@@ -9,12 +13,14 @@ pub struct SrpAuthError {
     pub(crate) description: &'static str,
 }
 
+#[cfg(feature = "std")]
 impl fmt::Display for SrpAuthError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "SRP authentication error")
     }
 }
 
+#[cfg(feature = "std")]
 impl error::Error for SrpAuthError {
     fn description(&self) -> &str {
         self.description

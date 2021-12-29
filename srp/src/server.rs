@@ -34,11 +34,12 @@
 //! To get the shared secret use `get_key` method. As alternative to using
 //! `verify` method it's also possible to use this key for authentificated
 //! encryption.
-use std::marker::PhantomData;
+use core::marker::PhantomData;
 
 use digest::{Digest, Output};
 use num_bigint::BigUint;
 
+use crate::std_alloc::Vec;
 use crate::types::{SrpAuthError, SrpGroup};
 
 /// Data provided by users upon registration, usually stored in the database.

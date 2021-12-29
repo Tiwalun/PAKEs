@@ -56,6 +56,26 @@
 //! [1]: https://en.wikipedia.org/wiki/Secure_Remote_Password_protocol
 //! [2]: https://tools.ietf.org/html/rfc5054
 
+#![no_std]
+
+#[cfg(feature = "std")]
+#[macro_use]
+extern crate std;
+
+#[cfg(feature = "std")]
+mod std_alloc {
+    pub(crate) use std::vec::Vec;
+}
+
+#[cfg(not(feature = "std"))]
+#[macro_use]
+extern crate alloc;
+
+#[cfg(not(feature = "std"))]
+mod std_alloc {
+    pub(crate) use alloc::vec::Vec;
+}
+
 pub mod client;
 pub mod groups;
 pub mod server;

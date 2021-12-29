@@ -56,8 +56,11 @@
 //! let pwd_verifier = client.get_password_verifier(&private_key);
 //! conn.send_registration_data(username, salt, pwd_verifier);
 //! ```
+//!
 
-use std::marker::PhantomData;
+use core::marker::PhantomData;
+
+use crate::std_alloc::Vec;
 
 use digest::{Digest, Output};
 use num_bigint::BigUint;
